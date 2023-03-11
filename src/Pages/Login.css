@@ -58,3 +58,7 @@
   cursor: pointer;
   background-color: rgb(150, 191, 72);
 }
+.error-text{
+  color: red;
+  font-size: larger;
+}

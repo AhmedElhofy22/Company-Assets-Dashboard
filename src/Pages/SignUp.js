@@ -1,25 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Logo from '../Images/shopify-ar21.svg'
 import './SignUp.css'
 import { Link } from "react-router-dom";
+import useValidForms from '../Hooks/useValidForms.js';
 
 const SignUp = () => {
-  const [signUpName, setSignUpName] = useState("")
-  const [signUpEmail, setSignUpEmail] = useState("");
-  const [signUpPassword, setSignUpPassword] = useState("");
-  const [resetPassword, setResetPassword] = useState("")
-  const signUpNameHandler=(e)=>{
-    setSignUpName(e.target.value)
+  const {value:enteredName, hasError:nameInputHasError, valueChangeHandler:nameChangeHandler, valueBlurHandler:nameBlurHandler, isValid:enteredNameIsValid} = useValidForms(value => value.trim() !== '')
+  const {value:enteredEmail, hasError:emailInputHasError, valueChangeHandler:emailChangeHandler, valueBlurHandler:emailBlurHandler, isValid:enteredEmailIsValid} = useValidForms(value=>value.includes('@'))
+  const {value:enteredPassword, hasError:passwordInputHasError, valueChangeHandler:passwordChangeHandler, valueBlurHandler:passwordBlurHandler, isValid:enteredPasswordIsValid} = useValidForms(value => value.trim() !== '')
+  const {value:enteredResetPassword, hasError:resetPasswordInputHasError, valueChangeHandler:resetPasswordChangeHandler, valueBlurHandler:resetPasswordBlurHandler, isValid:enteredResetPasswordIsValid} = useValidForms(value => value.trim() !== '')
+  let formIsValid = false;
+  if (enteredNameIsValid && enteredEmailIsValid && enteredPasswordIsValid && enteredResetPasswordIsValid) {
+    formIsValid = true;
   }
-  const signUpEmailHandler=(e)=>{
-    setSignUpEmail(e.target.value)
-  }
-  const signUpPasswordHandler=(e)=>{
-    setSignUpPassword(e.target.value)
-  }
-  const resetPasswordHandler=(e)=>{
-    setResetPassword(e.target.value)
-  }
+  
   return (
     <div className="signUp">
     <img src={Logo} alt='logo-img' className="signUp-logo"/>
@@ -27,23 +21,33 @@ const SignUp = () => {
     <h1>Create Account</h1>
     <form >
       <h5>Your Name</h5>
-      <input placeholder="First & Last Name" type="text" value={signUpName} onChange={signUpNameHandler}/>
+      <input placeholder="First & Last Name" type="text" value={enteredName} onChange={nameChangeHandler} onBlur={nameBlurHandler}/>
+      {nameInputHasError && (
+        <p className='error-text'>Please enter a valid name.</p>
+      )}
       <h5>Email</h5>
-      <input placeholder="Email" type="email" value={signUpEmail} onChange={signUpEmailHandler}/>
+      <input placeholder="Email" type="email" value={enteredEmail} onChange={emailChangeHandler} onBlur={emailBlurHandler}/>
+      {emailInputHasError && (
+        <p className='error-text'>Please enter a valid email includes('@').</p>
+      )}
       <h5>Password</h5>
-      <input placeholder="Password" type="password" value={signUpPassword} onChange={signUpPasswordHandler}/>
+      <input placeholder="Password" type="password" value={enteredPassword} onChange={passwordChangeHandler} onBlur={passwordBlurHandler}/>
+      {passwordInputHasError && (
+        <p className='error-text'>Password must not be empty.</p>
+      )}
       <h5>Re-Enter Password</h5>
-      <input  type="password" value={resetPassword} onChange={resetPasswordHandler}/>
-      <button type="submit" className="signUp-signUpBtn">Sign Up</button>
+      <input  type="password" value={enteredResetPassword} onChange={resetPasswordChangeHandler} onBlur={resetPasswordBlurHandler}/>
+      {resetPasswordInputHasError && (
+        <p className='error-text'>Enter Password Confirmation</p>
+      )}
+      <button type="submit" className="signUp-signUpBtn" disabled={!formIsValid}>Sign Up</button>
       <p>
       By creating an account, you agree to our Conditions of Use
       and Privacy Notice.
       </p>
       <p>Already Have An Account?<Link to="/login">Sign In</Link></p>
-    
-    </form>
-  </div>
- 
+     </form>
+    </div>
    </div>
     
   )
