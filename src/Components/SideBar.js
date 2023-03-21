@@ -7,6 +7,7 @@ import Logo from '../Images/shopify-ar21.svg'
 import { NavLink } from 'react-router-dom';
 import "./SideBar.css"
 
+
 const SideBar = () => {
   const[isOpen,setIsOpen]=useState(true)
   const sidebarOpenHandler=()=>{
@@ -19,12 +20,12 @@ const SideBar = () => {
       icon:<ImHome/>
     },
     {
-      path:'/categories/assets',
+      path:'/home/categories/assets',
       name:'Assets',
       icon:<FaBuysellads/>
     },
     {
-      path:'/categories',
+      path:'/home/categories',
       name:'Categories',
       icon:<RiStore2Line/>
     },
@@ -36,7 +37,7 @@ const SideBar = () => {
   ]
   return (
     <div className='container'>
-      <div style={{width: isOpen? "200px":"50px"}} className="sidebar">
+      <div style={{width: isOpen? "240px":"50px"}} className="sidebar">
         <div className='top-sidebar'>
           <img style={{display: isOpen? "block":"none"}} src={Logo} alt='logo-img' className='logo'/>
           <div style={{marginLeft: isOpen? "15px":"0px"}} className='next-logo'>
@@ -45,7 +46,7 @@ const SideBar = () => {
         </div>
         {
           menuItem.map((item,index)=>(
-            <NavLink to={item.path} key={index} className='link' activeClassName='active'>
+            <NavLink to={item.path} key={index} className='link' activeclassname='active'>
               <div className='icon'>{item.icon}</div>
               <div style={{display: isOpen? "block":"none"}} className='item-name'>{item.name}</div>
             </NavLink>
@@ -53,6 +54,7 @@ const SideBar = () => {
         }
       </div>
     </div>
+    
   )
 }
 
