@@ -46,7 +46,7 @@ const SideBar = () => {
         </div>
         {
           menuItem.map((item,index)=>(
-            <NavLink to={item.path} key={index} className='link' activeclassname='active'>
+            <NavLink to={item.path} key={index} className='link' activeclassname='active' end>
               <div className='icon'>{item.icon}</div>
               <div style={{display: isOpen? "block":"none"}} className='item-name'>{item.name}</div>
             </NavLink>
