@@ -6,6 +6,7 @@ import RootLayout from './Pages/RootLayout'
 import Categories from './Pages/Categories'
 import Assets from './Pages/Assets'
 import ErrorPage from './Pages/ErrorPage'
+import Employees from "./Pages/Employees";
 
 
 const router = createBrowserRouter([
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
       {  path: "/home/categories", element: <Categories /> },
       {  path: "/home/categories/assets", element: <Assets/>  },
       {  path: "/home/categories/assets/:id", element: <Assets/>  },
-      
+      {  path: "/home/employees", element: <Employees/> },
     ],
   },
 ]);

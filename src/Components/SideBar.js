@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { ImHome } from "react-icons/im";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { RiBuilding2Line, RiStore2Line } from "react-icons/ri";
-import { FaBuysellads } from "react-icons/fa";
+import { FaBuysellads, FaUsers } from "react-icons/fa";
 import Logo from '../Images/shopify-ar21.svg'
 import { NavLink } from 'react-router-dom';
 import "./SideBar.css"
@@ -33,6 +33,11 @@ const SideBar = () => {
       path:'/buildings',
       name:'Buildings',
       icon:<RiBuilding2Line/>
+    },
+    {
+      path:'/home/employees',
+      name:'Employees',
+      icon:<FaUsers/>
     },
   ]
   return (

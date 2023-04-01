@@ -3,10 +3,9 @@ import Popup from "./Popup";
 import { Button, Modal } from "react-bootstrap";
 import { useDispatch } from 'react-redux';
 import { insertAsset } from '../Store/assetSlice';
-import { useNavigate } from 'react-router-dom';
+
 
 const AddAsset = ({onClose}) => {
-    const navigate = useNavigate()
     const closeHandler=()=>{
         onClose()
       }
@@ -35,7 +34,6 @@ const AddAsset = ({onClose}) => {
         event.preventDefault();
         const id = Math.floor(Math.random() * 500)
         dispatch(insertAsset({id,name,category,quantity,component,location})).unwrap().then(()=>{
-            navigate('/home/categories/assets')
         }).catch((error)=>{
            console.log(error);
         })

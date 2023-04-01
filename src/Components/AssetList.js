@@ -10,7 +10,7 @@ const AssetList = ({assets,deleteOneAsset}) => {
    <>
     <div className="d-flex justify-content-between">
       <h1>All Assets</h1>
-      <Button variant="success" onClick={setIsVisible}>Add</Button>
+      <Button variant="success" onClick={setIsVisible}>Add Asset</Button>
       {popup? <AddAsset onClose={()=>setPopup(false)}/> :null}
     </div>
     <Table striped bordered hover>

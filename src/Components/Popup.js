@@ -1,7 +1,7 @@
 import React , {Fragment} from 'react'
 import './Popup.css'
 
-const PopUp = (props) => {
+const Popup = (props) => {
   return (
     <Fragment >
       <div className='backdrop' onClick={props.onClose}/>
@@ -10,4 +10,4 @@ const PopUp = (props) => {
   )
 }
 
-export default PopUp
+export default Popup
