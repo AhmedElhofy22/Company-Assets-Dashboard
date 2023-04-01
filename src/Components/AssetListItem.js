@@ -9,13 +9,14 @@ const AssetListItem = ({assets,deleteOneAsset}) => {
     const assetsList = assets.map((el,idx)=>  <tr key={el.id}>
   <td>#{++idx}</td>
   <td>{el.name}</td>
-  <td>{el.categoryId}</td>
+  <td>{el.category}</td>
+  <td>{el.quantity}</td>
+  <td>{el.component}</td>
   <td>{el.location}</td>
   <td>
     <ButtonGroup aria-label="Basic example">
       <Button>Edit</Button>
       <Button variant="danger" onClick={()=>deleteHandler(el.id)}>Delete</Button>
-      <Button variant="success">Add</Button>
     </ButtonGroup>
   </td>
 </tr>)

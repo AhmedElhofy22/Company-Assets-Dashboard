@@ -1,0 +1,14 @@
+.form {
+    background-color: gray;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    border: 1px solid lightgray;
+    padding: 20px;
+   
+   
+  }
+
+  

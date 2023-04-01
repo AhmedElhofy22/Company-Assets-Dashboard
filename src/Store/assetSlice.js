@@ -19,19 +19,35 @@ export const deleteAsset = createAsyncThunk("assets/deleteAsset", async(id,thunk
         await fetch(`http://localhost:5000/assets/${id}`,{
             method: "DELETE",
         });
-        
-        
         return id;
       } catch(error) {
         return rejectedWithValue(error.message)
       }
 })
 
+export const insertAsset = createAsyncThunk("assets/insertAssets", async (item, thunkAPI)=> {
+    const {rejectedWithValue} = thunkAPI;
+    try {
+      const res = await fetch("http://localhost:5000/assets",{
+        method: "POST",
+        body: JSON.stringify(item),
+        headers: {
+            "content-type": "application/json; charset=utf-8", 
+        }
+      });
+      const data = await res.json();
+      return data;
+    } catch(error) {
+      return rejectedWithValue(error.message)
+    }
+ });
+
 const assetSlice = createSlice({
     name: "assets",
     initialState,
     reducers: {},
     extraReducers: {
+           // Fetch Assets
         [fetchAssets.pending]: (state)=>{
             state.loading = true;
             state.error = null
@@ -54,6 +70,19 @@ const assetSlice = createSlice({
             state.assets = state.assets.filter((el)=>el.id !== action.payload)
         },
         [deleteAsset.rejected]: (state,action)=>{
+            state.loading = false;
+            state.error = action.payload;
+        },
+           // Create Asset
+        [insertAsset.pending]: (state)=>{
+            state.loading = true;
+            state.error = null
+        },
+        [insertAsset.fulfilled]: (state,action)=>{
+            state.loading = false;
+            state.assets.push(action.payload)
+        },
+        [insertAsset.rejected]: (state,action)=>{
             state.loading = false;
             state.error = action.payload;
         },
