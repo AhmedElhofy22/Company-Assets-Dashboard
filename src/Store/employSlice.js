@@ -13,7 +13,7 @@ export const fetchEmployees = createAsyncThunk("employees/fetchEmployees", async
    }
 });
 
-export const deleteEmploy = createAsyncThunk("employees/deleteEmploy", async(id,thunkAPI)=>{
+export const deleteEmployer = createAsyncThunk("employees/deleteEmployer", async(id,thunkAPI)=>{
     const {rejectedWithValue} = thunkAPI;
     try {
         await fetch(`http://localhost:5000/employees/${id}`,{
@@ -25,7 +25,7 @@ export const deleteEmploy = createAsyncThunk("employees/deleteEmploy", async(id,
       }
 })
 
-export const insertEmploy = createAsyncThunk("employees/insertEmploy", async (item, thunkAPI)=> {
+export const insertEmployer = createAsyncThunk("employees/insertEmployer", async (item, thunkAPI)=> {
     const {rejectedWithValue} = thunkAPI;
     try {
       const res = await fetch("http://localhost:5000/employees",{
@@ -43,11 +43,11 @@ export const insertEmploy = createAsyncThunk("employees/insertEmploy", async (it
  });
 
 const employSlice = createSlice({
-    name: "assets",
+    name: "employees",
     initialState,
     reducers: {},
     extraReducers: {
-           // Fetch Employ
+           // Fetch Employer
         [fetchEmployees.pending]: (state)=>{
             state.loading = true;
             state.error = null
@@ -60,29 +60,29 @@ const employSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
-           // Delete Employ
-        [deleteEmploy.pending]: (state)=>{
+           // Delete Employer
+        [deleteEmployer.pending]: (state)=>{
             state.loading = true;
             state.error = null
         },
-        [deleteEmploy.fulfilled]: (state,action)=>{
+        [deleteEmployer.fulfilled]: (state,action)=>{
             state.loading = false;
             state.employees = state.employees.filter((el)=>el.id !== action.payload)
         },
-        [deleteEmploy.rejected]: (state,action)=>{
+        [deleteEmployer.rejected]: (state,action)=>{
             state.loading = false;
             state.error = action.payload;
         },
-           // Create Employ
-        [insertEmploy.pending]: (state)=>{
+           // Create Employer
+        [insertEmployer.pending]: (state)=>{
             state.loading = true;
             state.error = null
         },
-        [insertEmploy.fulfilled]: (state,action)=>{
+        [insertEmployer.fulfilled]: (state,action)=>{
             state.loading = false;
             state.employees.push(action.payload)
         },
-        [insertEmploy.rejected]: (state,action)=>{
+        [insertEmployer.rejected]: (state,action)=>{
             state.loading = false;
             state.error = action.payload;
         },
