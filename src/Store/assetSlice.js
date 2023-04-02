@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const initialState = {assets:[], loading:false, error:null};
+const initialState = {assets:[], loading:false, error:null, asset:null};
 
 export const fetchAssets = createAsyncThunk("assets/fetchAssets", async (_, thunkAPI)=> {
    const {rejectedWithValue} = thunkAPI;
@@ -12,6 +12,17 @@ export const fetchAssets = createAsyncThunk("assets/fetchAssets", async (_, thun
      return rejectedWithValue(error.message)
    }
 });
+
+export const fetchAsset = createAsyncThunk("assets/fetchAsset", async (id, thunkAPI)=> {
+    const {rejectedWithValue} = thunkAPI;
+    try {
+      const res = await fetch(`http://localhost:5000/assets/${id}`);
+      const data = await res.json();
+      return data;
+    } catch(error) {
+      return rejectedWithValue(error.message)
+    }
+ });
 
 export const deleteAsset = createAsyncThunk("assets/deleteAsset", async(id,thunkAPI)=>{
     const {rejectedWithValue} = thunkAPI;
@@ -57,6 +68,19 @@ const assetSlice = createSlice({
             state.assets = action.payload;
         },
         [fetchAssets.rejected]: (state,action)=>{
+            state.loading = false;
+            state.error = action.payload;
+        },
+           // Get Asset
+        [fetchAsset.pending]: (state)=>{
+            state.loading = true;
+            state.error = null
+        },
+        [fetchAsset.fulfilled]: (state,action)=>{
+            state.loading = false;
+            state.asset = action.payload;
+        },
+        [fetchAsset.rejected]: (state,action)=>{
             state.loading = false;
             state.error = action.payload;
         },

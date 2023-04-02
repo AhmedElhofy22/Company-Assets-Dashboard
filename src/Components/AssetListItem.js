@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, ButtonGroup } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 const AssetListItem = ({assets,deleteOneAsset}) => {
     const deleteHandler=(el)=>{
@@ -8,7 +9,7 @@ const AssetListItem = ({assets,deleteOneAsset}) => {
     }
     const assetsList = assets.map((el,idx)=>  <tr key={el.id}>
   <td>#{++idx}</td>
-  <td>{el.name}</td>
+  <Link style={{textDecoration: 'none'}} to={`/home/categories/assets/${el.id}`}><td>{el.name}</td></Link>
   <td>{el.category}</td>
   <td>{el.quantity}</td>
   <td>{el.component}</td>
