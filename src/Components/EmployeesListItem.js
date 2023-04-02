@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, ButtonGroup } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 const EmployeesListItem = ({employees,deleteOneEmployer}) => {
     const deleteEmployerHandler=(el)=>{
@@ -8,7 +9,7 @@ const EmployeesListItem = ({employees,deleteOneEmployer}) => {
     }
     const employeesList = employees.map((el,idx)=>  <tr key={el.id}>
   <td>#{++idx}</td>
-  <td>{el.name}</td>
+  <Link style={{textDecoration: 'none'}} to={`/home/employees/${el.id}`}><td>{el.name}</td></Link>
   <td>{el.email}</td>
   <td>{el.number}</td>
   <td>{el.address}</td>

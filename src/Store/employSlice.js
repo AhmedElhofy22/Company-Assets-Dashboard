@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const initialState = {employees:[], loading:false, error:null};
+const initialState = {employees:[], loading:false, error:null, employer:null};
 
 export const fetchEmployees = createAsyncThunk("employees/fetchEmployees", async (_, thunkAPI)=> {
    const {rejectedWithValue} = thunkAPI;
@@ -12,6 +12,17 @@ export const fetchEmployees = createAsyncThunk("employees/fetchEmployees", async
      return rejectedWithValue(error.message)
    }
 });
+
+export const fetchEmployer = createAsyncThunk("employees/fetchEmployer", async (id, thunkAPI)=> {
+    const {rejectedWithValue} = thunkAPI;
+    try {
+      const res = await fetch(`http://localhost:5000/employees/${id}`);
+      const data = await res.json();
+      return data;
+    } catch(error) {
+      return rejectedWithValue(error.message)
+    }
+ });
 
 export const deleteEmployer = createAsyncThunk("employees/deleteEmployer", async(id,thunkAPI)=>{
     const {rejectedWithValue} = thunkAPI;
@@ -57,6 +68,19 @@ const employSlice = createSlice({
             state.employees = action.payload;
         },
         [fetchEmployees.rejected]: (state,action)=>{
+            state.loading = false;
+            state.error = action.payload;
+        },
+           // Get Employer
+           [fetchEmployer.pending]: (state)=>{
+            state.loading = true;
+            state.error = null
+        },
+        [fetchEmployer.fulfilled]: (state,action)=>{
+            state.loading = false;
+            state.employer = action.payload;
+        },
+        [fetchEmployer.rejected]: (state,action)=>{
             state.loading = false;
             state.error = action.payload;
         },
