@@ -1,6 +1,4 @@
 import React, {useEffect,useCallback} from 'react'
-
-
 import { useDispatch , useSelector } from 'react-redux';
 import { fetchAssets, deleteAsset } from '../Store/assetSlice';
 import AssetList from '../Components/AssetList';
