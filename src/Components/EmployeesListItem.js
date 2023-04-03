@@ -10,13 +10,13 @@ const EmployeesListItem = ({employees,deleteOneEmployer}) => {
     }
     const employeesList = employees.map((el,idx)=>  <tr key={el.id}>
   <td>#{++idx}</td>
-  <Link style={{textDecoration: 'none'}} to={`/home/employees/${el.id}`}><td>{el.name}</td></Link>
+  <Link style={{textDecoration: 'none'}} to={`/employees/${el.id}`}><td>{el.name}</td></Link>
   <td>{el.email}</td>
   <td>{el.number}</td>
   <td>{el.address}</td>
   <td>
     <ButtonGroup aria-label="Basic example">
-      <Button onClick={() => navigate(`/home/employees/${el.id}/edit`)}>Edit</Button>
+      <Button onClick={() => navigate(`/employees/${el.id}/edit`)}>Edit</Button>
       <Button variant="danger" onClick={()=>deleteEmployerHandler(el)}>Delete</Button>
     </ButtonGroup>
   </td>

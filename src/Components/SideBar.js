@@ -20,12 +20,12 @@ const SideBar = () => {
       icon:<ImHome/>
     },
     {
-      path:'/home/categories/assets',
+      path:'/categories/assets',
       name:'Assets',
       icon:<FaBuysellads/>
     },
     {
-      path:'/home/categories',
+      path:'/categories',
       name:'Categories',
       icon:<RiStore2Line/>
     },
@@ -35,7 +35,7 @@ const SideBar = () => {
       icon:<RiBuilding2Line/>
     },
     {
-      path:'/home/employees',
+      path:'/employees',
       name:'Employees',
       icon:<FaUsers/>
     },

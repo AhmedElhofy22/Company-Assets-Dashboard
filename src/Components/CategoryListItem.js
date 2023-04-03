@@ -11,11 +11,11 @@ const CategoryListItem = ({categories,deleteOneCategory}) => {
     }
     const categoriesList = categories.map((el,idx)=>  <tr key={el.id}>
   <td>#{++idx}</td>
-  <Link style={{textDecoration: 'none'}} to={`/home/categories/assets/${el.id}`}><td>{el.name}</td></Link>
+  <Link style={{textDecoration: 'none'}} to={`/categories/assets/${el.id}`}><td>{el.name}</td></Link>
  
   <td>
     <ButtonGroup aria-label="Basic example">
-      <Button onClick={() => navigate(`/home/categories/assets/${el.id}/edit`)} >Edit</Button>
+      <Button onClick={() => navigate(`/categories/assets/${el.id}/edit`)} >Edit</Button>
       <Button variant="danger" onClick={()=>deleteHandler(el)}>Delete</Button>
     </ButtonGroup>
   </td>

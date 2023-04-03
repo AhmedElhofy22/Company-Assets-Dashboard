@@ -1,11 +1,15 @@
 import React from 'react'
+import SideBar from '../Components/SideBar'
+import { Container } from "react-bootstrap";
 
 
 const Home = () => {
   return (
     <div>
     
-      <h1>Home Page</h1>
+    <Container>
+    <SideBar/>
+  </Container>
       
     </div>
   )
