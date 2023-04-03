@@ -1,8 +1,10 @@
 import React from 'react'
 import { Button, ButtonGroup } from "react-bootstrap";
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AssetListItem = ({assets,deleteOneAsset}) => {
+    const navigate = useNavigate()
     const deleteHandler=(el)=>{
         if (window.confirm(`Are you sure you want to delete ${el.name}?`))
         deleteOneAsset(el.id)
@@ -16,7 +18,7 @@ const AssetListItem = ({assets,deleteOneAsset}) => {
   <td>{el.location}</td>
   <td>
     <ButtonGroup aria-label="Basic example">
-      <Button>Edit</Button>
+      <Button onClick={() => navigate(`/home/categories/assets/${el.id}/edit`)} >Edit</Button>
       <Button variant="danger" onClick={()=>deleteHandler(el)}>Delete</Button>
     </ButtonGroup>
   </td>
@@ -24,6 +26,7 @@ const AssetListItem = ({assets,deleteOneAsset}) => {
   return (
     <>
       {assetsList}
+      
     </>
   )
 }

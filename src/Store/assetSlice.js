@@ -53,6 +53,23 @@ export const insertAsset = createAsyncThunk("assets/insertAssets", async (item, 
     }
  });
 
+ export const editAsset = createAsyncThunk("assets/editAsset", async (item, thunkAPI)=> {
+    const {rejectedWithValue} = thunkAPI;
+    try {
+      const res = await fetch(`http://localhost:5000/assets/${item.id}`,{
+        method: "PATCH",
+        body: JSON.stringify(item),
+        headers: {
+            "content-type": "application/json; charset=utf-8", 
+        }
+      });
+      const data = await res.json();
+      return data;
+    } catch(error) {
+      return rejectedWithValue(error.message)
+    }
+ });
+
 const assetSlice = createSlice({
     name: "assets",
     initialState,
@@ -74,7 +91,8 @@ const assetSlice = createSlice({
            // Get Asset
         [fetchAsset.pending]: (state)=>{
             state.loading = true;
-            state.error = null
+            state.error = null;
+            state.asset = null;
         },
         [fetchAsset.fulfilled]: (state,action)=>{
             state.loading = false;
@@ -107,6 +125,19 @@ const assetSlice = createSlice({
             state.assets.push(action.payload)
         },
         [insertAsset.rejected]: (state,action)=>{
+            state.loading = false;
+            state.error = action.payload;
+        },
+            // Edit Asset
+        [editAsset.pending]: (state)=>{
+            state.loading = true;
+            state.error = null
+        },
+        [editAsset.fulfilled]: (state,action)=>{
+            state.loading = false;
+            state.asset = action.payload;
+        },
+        [editAsset.rejected]: (state,action)=>{
             state.loading = false;
             state.error = action.payload;
         },

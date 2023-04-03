@@ -9,6 +9,7 @@ import ErrorPage from './Pages/ErrorPage'
 import Employees from "./Pages/Employees";
 import AssetDetail from "./Pages/AssetDetail";
 import EmployerDetail from "./Pages/EmployerDetail";
+import EditAsset from "./Pages/EditAsset";
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       {  path: "/home/categories", element: <Categories /> },
       {  path: "/home/categories/assets", element: <Assets/>  },
       {  path: "/home/categories/assets/:id", element: <AssetDetail/>  },
+      {  path: "/home/categories/assets/:id/edit", element: <EditAsset/>  },
       {  path: "/home/employees", element: <Employees/> },
       {  path: "/home/employees/:id", element: <EmployerDetail/>  },
     ],

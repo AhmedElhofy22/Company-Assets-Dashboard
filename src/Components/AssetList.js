@@ -26,7 +26,7 @@ const AssetList = ({assets,deleteOneAsset}) => {
         </tr>
       </thead>
       <tbody>
-        <AssetListItem assets={assets} deleteOneAsset={deleteOneAsset}/>
+        <AssetListItem assets={assets} deleteOneAsset={deleteOneAsset} />
       </tbody>
     </Table>
     </>

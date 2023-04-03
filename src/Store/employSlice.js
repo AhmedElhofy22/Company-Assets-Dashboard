@@ -74,7 +74,8 @@ const employSlice = createSlice({
            // Get Employer
            [fetchEmployer.pending]: (state)=>{
             state.loading = true;
-            state.error = null
+            state.error = null;
+            state.employer = null;
         },
         [fetchEmployer.fulfilled]: (state,action)=>{
             state.loading = false;
