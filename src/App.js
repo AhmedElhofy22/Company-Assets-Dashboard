@@ -11,6 +11,7 @@ import AssetDetail from "./Pages/AssetDetail";
 import EmployerDetail from "./Pages/EmployerDetail";
 import EditAsset from "./Pages/EditAsset";
 import EditEmployer from "./Pages/EditEmployer";
+import CategoryDetail from "./Pages/CategoryDetail";
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       {  path: "/home/categories", element: <Categories /> },
       {  path: "/home/categories/assets", element: <Assets/>  },
       {  path: "/home/categories/assets/:id", element: <AssetDetail/>  },
+      {  path: "/home/categories/assets/:id", element: <CategoryDetail/>  },
       {  path: "/home/categories/assets/:id/edit", element: <EditAsset/>  },
       {  path: "/home/employees", element: <Employees/> },
       {  path: "/home/employees/:id", element: <EmployerDetail/>  },

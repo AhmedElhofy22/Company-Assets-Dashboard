@@ -1,4 +1,4 @@
-import React, {memo,useState} from 'react'
+import React, {useState} from 'react'
 import { Table, Button } from "react-bootstrap";
 import AddAsset from './AddAsset';
 import AssetListItem from './AssetListItem';
@@ -33,4 +33,4 @@ const AssetList = ({assets,deleteOneAsset}) => {
   )
 }
 
-export default memo(AssetList);
+export default AssetList;

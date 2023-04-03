@@ -1,4 +1,4 @@
-import React, {useEffect,useCallback} from 'react'
+import React, {useEffect} from 'react'
 import { useDispatch , useSelector } from 'react-redux';
 import { fetchAssets, deleteAsset } from '../Store/assetSlice';
 import AssetList from '../Components/AssetList';
@@ -12,7 +12,7 @@ const Assets = () => {
     dispatch(fetchAssets())
   },[dispatch])
 
-  const deleteOneAsset = useCallback((id)=>dispatch(deleteAsset(id)),[dispatch])
+  const deleteOneAsset = (id)=>dispatch(deleteAsset(id))
   
  
   return (

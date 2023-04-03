@@ -1,4 +1,4 @@
-import React, {memo,useState} from 'react'
+import React, {useState} from 'react'
 import { Table, Button } from "react-bootstrap";
 import AddEmployer from './AddEmployer';
 import EmployeesListItem from './EmployeesListItem';
@@ -32,4 +32,4 @@ const EmployeesList = ({employees,deleteOneEmployer}) => {
   )
 }
 
-export default memo(EmployeesList);
+export default EmployeesList;

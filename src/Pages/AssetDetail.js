@@ -3,9 +3,10 @@ import Loading from '../Components/Loading'
 import useAssetDetail from '../Hooks/useAssetDetail'
 import { Table } from 'react-bootstrap'
 
+
 const AssetDetail = () => {
    const {loading,error,asset} = useAssetDetail()
-
+   
   return (
     <div>
      <Loading loading={loading} error={error}>

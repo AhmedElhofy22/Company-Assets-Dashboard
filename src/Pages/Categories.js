@@ -1,4 +1,4 @@
-import React, {useEffect,useCallback} from 'react'
+import React, {useEffect} from 'react'
 import { useDispatch , useSelector } from 'react-redux';
 import { fetchCategories, deleteCategory } from '../Store/categorySlice';
 import CategoryList from '../Components/CategoryList';
@@ -12,7 +12,7 @@ const Categories = () => {
     dispatch(fetchCategories())
   },[dispatch])
 
-  const deleteOneCategory = useCallback((id)=>dispatch(deleteCategory(id)),[dispatch])
+  const deleteOneCategory = (id)=>dispatch(deleteCategory(id))
   
  
   return (

@@ -1,6 +1,4 @@
-import React, {useEffect,useCallback} from 'react'
-
-
+import React, {useEffect} from 'react'
 import { useDispatch , useSelector } from 'react-redux';
 import { fetchEmployees, deleteEmployer } from '../Store/employSlice';
 import EmployeesList from '../Components/EmployeesList';
@@ -13,7 +11,7 @@ const Employees = () => {
     dispatch(fetchEmployees())
   },[dispatch])
 
-  const deleteOneEmployer = useCallback((id)=>dispatch(deleteEmployer(id)),[dispatch])
+  const deleteOneEmployer = (id)=>dispatch(deleteEmployer(id))
  
   return (
     <Loading loading={loading} error={error}>
