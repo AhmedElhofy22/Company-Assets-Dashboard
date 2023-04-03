@@ -53,6 +53,23 @@ export const insertEmployer = createAsyncThunk("employees/insertEmployer", async
     }
  });
 
+ export const editEmployer = createAsyncThunk("employees/editEmployer", async (item, thunkAPI)=> {
+    const {rejectedWithValue} = thunkAPI;
+    try {
+      const res = await fetch(`http://localhost:5000/employees/${item.id}`,{
+        method: "PATCH",
+        body: JSON.stringify(item),
+        headers: {
+            "content-type": "application/json; charset=utf-8", 
+        }
+      });
+      const data = await res.json();
+      return data;
+    } catch(error) {
+      return rejectedWithValue(error.message)
+    }
+ });
+
 const employSlice = createSlice({
     name: "employees",
     initialState,
@@ -111,6 +128,19 @@ const employSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
+             // Edit Employer
+             [editEmployer.pending]: (state)=>{
+                state.loading = true;
+                state.error = null
+            },
+            [editEmployer.fulfilled]: (state,action)=>{
+                state.loading = false;
+                state.employer = action.payload;
+            },
+            [editEmployer.rejected]: (state,action)=>{
+                state.loading = false;
+                state.error = action.payload;
+            },
     },
 })
 

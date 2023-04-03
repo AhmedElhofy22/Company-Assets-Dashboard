@@ -16,14 +16,14 @@ const EditAsset = () => {
       const [component, setComponent] = useState("");
       const [location, setLocation] = useState("");
       useEffect(()=>{
-        if(asset && !name && !category && !quantity && !component && !location){
+        if(asset){
             setName(asset?.name);
             setCategory(asset?.category);
             setQuantity(asset?.quantity);
             setComponent(asset?.component);
             setLocation(asset?.location);
         }
-      },[asset,name,category,quantity,component,location])
+      },[asset])
       const nameHandler = (event) => {
         setName(event.target.value);
       };

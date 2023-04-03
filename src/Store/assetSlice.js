@@ -92,7 +92,7 @@ const assetSlice = createSlice({
         [fetchAsset.pending]: (state)=>{
             state.loading = true;
             state.error = null;
-            state.asset = null;
+            
         },
         [fetchAsset.fulfilled]: (state,action)=>{
             state.loading = false;

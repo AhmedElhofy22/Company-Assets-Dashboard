@@ -20,7 +20,6 @@ const Assets = () => {
   return (
     <Loading loading={loading} error={error}>
       <AssetList assets={assets} deleteOneAsset={deleteOneAsset} />
-      
     </Loading>
   );
 };

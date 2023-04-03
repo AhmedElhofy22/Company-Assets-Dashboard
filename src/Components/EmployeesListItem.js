@@ -1,8 +1,9 @@
 import React from 'react'
 import { Button, ButtonGroup } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 
 const EmployeesListItem = ({employees,deleteOneEmployer}) => {
+  const navigate = useNavigate()
     const deleteEmployerHandler=(el)=>{
         if (window.confirm(`Are you sure you want to delete ${el.name}?`))
         deleteOneEmployer(el.id)
@@ -15,7 +16,7 @@ const EmployeesListItem = ({employees,deleteOneEmployer}) => {
   <td>{el.address}</td>
   <td>
     <ButtonGroup aria-label="Basic example">
-      <Button>Edit</Button>
+      <Button onClick={() => navigate(`/home/employees/${el.id}/edit`)}>Edit</Button>
       <Button variant="danger" onClick={()=>deleteEmployerHandler(el)}>Delete</Button>
     </ButtonGroup>
   </td>
